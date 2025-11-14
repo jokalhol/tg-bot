@@ -5,10 +5,10 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters
 import logging
 
 # Токен для Telegram-бота
-TELEGRAM_TOKEN = ""
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")  # Берем из переменной окружения
 
 # Токен для Hugging Face API
-HF_TOKEN = ""
+HF_TOKEN = os.getenv("HF_TOKEN")  # Берем из переменной окружения
 
 # URL модели для Hugging Face
 API_URL = "https://router.huggingface.co/v1/chat/completions"  # Изменить URL для использования правильной модели
@@ -64,6 +64,7 @@ async def send_long_message(update, text):
 async def start(update: Update, context):
     await update.message.reply_text("Привет! Я бот, напиши /aalisixx, чтобы задать мне вопрос."
                                     "/reset чтобы очистить контекст")
+
 # Функция для обработки команды /aalisixx
 async def aalisixx(update: Update, context):
     user_message = " ".join(context.args)  # Получаем текст после команды
